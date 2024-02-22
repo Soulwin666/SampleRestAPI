@@ -1,4 +1,5 @@
 ﻿using Microsoft.IdentityModel.Tokens;
+using System.Collections.Generic;
 
 namespace SampleRestAPI.Service
 {
@@ -82,7 +83,7 @@ namespace SampleRestAPI.Service
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="book"></param>
         /// <exception cref="KeyNotFoundException"></exception>
@@ -105,7 +106,7 @@ namespace SampleRestAPI.Service
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="book"></param>
         /// <exception cref="KeyNotFoundException"></exception>
@@ -119,6 +120,29 @@ namespace SampleRestAPI.Service
                 }
 
                 this._bookRepository.DeleteBook(book);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public List<Model.Book> GetSalesBooks()
+        {
+            try
+            {
+                List<Model.Book> books = this._bookRepository.GetSalesBooks();
+                return books;
+            }
+            catch (KeyNotFoundException ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw;
             }
             catch (Exception ex)
             {

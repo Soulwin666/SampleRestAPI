@@ -12,11 +12,16 @@ namespace SampleRestAPI.Context
 
         public DbSet<Model.Book> Books { get; set; }
 
+        public DbSet<Model.Sales> Sales { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Configure BookId as an identity column
             modelBuilder.Entity<Book>()
                 .HasKey(b => b.Id);
+
+            modelBuilder.Entity<Sales>()
+               .HasNoKey();
 
             base.OnModelCreating(modelBuilder);
         }

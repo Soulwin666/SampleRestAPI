@@ -13,10 +13,4 @@ namespace SampleRestAPI.Model
         [JsonProperty("bookName"), Column("BOOK_NAME")]
         public string? BookName { get; set; }
     }
-
-    public class DeleteBook
-    {
-        [JsonProperty("bookId")]
-        public long Id { get; set; }
-    }
 }

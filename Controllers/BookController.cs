@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SampleRestAPI.Service;
 
 namespace SampleRestAPI.Controllers
 {
@@ -87,7 +88,7 @@ namespace SampleRestAPI.Controllers
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="book"></param>
         /// <returns></returns>
@@ -112,7 +113,7 @@ namespace SampleRestAPI.Controllers
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="book"></param>
         /// <returns></returns>
@@ -128,6 +129,22 @@ namespace SampleRestAPI.Controllers
             catch (KeyNotFoundException ex)
             {
                 return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw;
+            }
+        }
+
+        [HttpGet]
+        [Route("getSalesBook")]
+        public ActionResult<List<Model.Book>> GetSalesBook()
+        {
+            try
+            {
+                List<Model.Book> book = _bookService.GetSalesBooks();
+                return Ok(book);
             }
             catch (Exception ex)
             {
