@@ -10,9 +10,13 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<BookContext>(oombu => {
-    oombu.UseSqlServer(builder.Configuration.GetConnectionString("localConnectionString"));
+builder.Services.AddDbContext<MyDbContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString"));
 });
+
+builder.Services.AddScoped<SampleRestAPI.Service.Book>();
+builder.Services.AddScoped<SampleRestAPI.Repository.Book>();
 
 var app = builder.Build();
 
